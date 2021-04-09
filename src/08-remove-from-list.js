@@ -17,8 +17,64 @@
  * }
  */
 
-function removeKFromList(/* l, k */) {
-  throw new Error('Not implemented');
+function removeKFromList(l, k) {
+  let obj = {};
+  let obj1 = {};
+  obj1 = { ...l };
+  obj = { head: obj1 };
+  // console.log(l);
+  obj.deleteitem = function (val) {
+    if (this.head.value === val) {
+      //     console.log("matched in head");
+      this.head = this.head.next;
+    }
+    let previousNode = this.head;
+    let currentNode = previousNode.next;
+    while (currentNode) {
+      if (currentNode.value === val) {
+        //         console.log("matched in body");
+        previousNode.next = currentNode.next;
+        currentNode = currentNode.next;
+        break;
+      } else {
+        //         console.log("next step");
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+    }
+  };
+  obj.deleteitem(k);
+  // console.log(obj)
+  obj.printArr = function () {
+    const resArr = [];
+    let tmp = this.head;
+    while (tmp) {
+      //       console.log(tmp.value);
+      resArr.push(tmp.value);
+      tmp = tmp.next;
+    }
+    return resArr;
+  };
+  let newAr = [];
+  newAr = obj.printArr();
+  // console.log(newAr);
+  function ListNode(x) {
+    this.value = x;
+    this.next = null;
+  }
+  function convertArrayToList(arr) {
+    return arr.reverse().reduce((acc, cur) => {
+      if (acc) {
+        const node = new ListNode(cur);
+        node.next = acc;
+        return node;
+      }
+      return new ListNode(cur);
+    }, null);
+  }
+  let obj3 = {};
+  obj3 = convertArrayToList(newAr);
+  return obj3;
 }
 
 module.exports = removeKFromList;
