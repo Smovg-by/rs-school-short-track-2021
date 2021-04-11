@@ -11,16 +11,28 @@
  *
  */
 class Stack {
-  push(/* element */) {
-    throw new Error('Not implemented');
+  // add the array constructor
+  constructor() {
+    this.arr = [];
   }
 
+  // add the 'push' method
+  push(element) {
+    this.arr.push(element);
+  }
+
+  // add the 'pop' method.
   pop() {
-    throw new Error('Not implemented');
+    // if array is empty, return 'undefined'
+    if (this.arr.length === 0) {
+      return undefined;
+    } // if array is not empty - return deleted element
+    return this.arr.pop();
   }
 
+  // return the last element (the 'peel of the stack')
   peek() {
-    throw new Error('Not implemented');
+    return this.arr[this.arr.length - 1];
   }
 }
 
